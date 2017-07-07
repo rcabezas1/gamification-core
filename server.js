@@ -1,6 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var socketIO = require('socket.io');
 var extend = require('util')._extend;
 var ALL_CHARACTERS = require('./all-characters').ALL;
 const SELECT = require('./all-characters').SELECT;
@@ -11,9 +11,12 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 var port = process.env.PORT || 5000;
-http.listen(port, function() {
+const server = http.listen(port, function() {
     console.log('listening on *:'+port);
 });
+
+const io = socketIO(server)
+
 
 io.on('connection', function(socket) {
     console.log('usuario conectado');
