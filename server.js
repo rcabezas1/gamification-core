@@ -2,16 +2,16 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var extend = require('util')._extend;
-let ALL_CHARACTERS = require('./all-characters').ALL;
+var ALL_CHARACTERS = require('./all-characters').ALL;
 const SELECT = require('./all-characters').SELECT;
 
-let players = [];
+var players = [];
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
-http.listen(5000, function() {
-    console.log('listening on *:5000');
+http.listen(80, function() {
+    console.log('listening on *:80');
 });
 
 io.on('connection', function(socket) {
