@@ -10,8 +10,9 @@ var players = [];
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
-http.listen(1337, function() {
-    console.log('listening on *:1337');
+var port = process.env.PORT || 5000;
+http.listen(port, function() {
+    console.log('listening on *:'+port);
 });
 
 io.on('connection', function(socket) {
